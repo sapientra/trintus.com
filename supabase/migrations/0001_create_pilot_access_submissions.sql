@@ -10,3 +10,13 @@ create table if not exists public.pilot_access_submissions (
 
 create index if not exists pilot_access_submissions_submitted_at_idx
   on public.pilot_access_submissions (submitted_at desc);
+
+alter table public.pilot_access_submissions enable row level security;
+
+drop policy if exists "Allow anonymous inserts" on public.pilot_access_submissions;
+
+create policy "Allow anonymous inserts"
+on public.pilot_access_submissions
+for insert
+to anon
+with check (true);
