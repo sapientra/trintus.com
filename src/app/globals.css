@@ -4,36 +4,79 @@
 
 :root {
   color-scheme: dark;
+
+  /* ─── Color palette ─────────────────────────────────────────── */
+  --background: #1a1a1d;
+  --foreground: #f5f5f7;
+  --surface: #212125;
+  --surface-2: #28282d;
+  --muted-foreground: #9a9aa3;
+  --border: #3a3a40;
+  --border-strong: #4f4f57;
+  --signal: #e85d3a;
+  --signal-foreground: #ffffff;
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--border-strong);
+  }
+
+  ::selection {
+    background: rgba(168, 168, 173, 0.18);
+    color: var(--foreground);
+  }
 }
 
-body {
-  background: #070b12;
-  color: #e2e8f0;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* ─── Custom utilities ─────────────────────────────────────────── */
 
-::selection {
-  background: rgba(148, 163, 184, 0.18);
-  color: #f8fafc;
-}
+@layer utilities {
+  .eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #070b12;
-}
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  .section-divider {
+    border-top: 1px solid var(--border);
+  }
+
+  .hairline-grid {
+    display: grid;
+    gap: 1px;
+    overflow: hidden;
+    border-radius: inherit;
+    border: 1px solid var(--border);
+    background-color: var(--border);
+  }
+
+  .hairline-grid > * {
+    background-color: var(--background);
+  }
 }
